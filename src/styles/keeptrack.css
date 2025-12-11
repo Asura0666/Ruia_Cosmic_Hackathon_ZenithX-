@@ -1,0 +1,108 @@
+/* Keeptrack-specific styles */
+.keeptrack-hud {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.keeptrack-panel {
+  backdrop-filter: blur(16px);
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+.keeptrack-glow {
+  box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+}
+
+/* Satellite marker animations */
+@keyframes satellite-pulse {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7; 
+    transform: scale(1.2);
+  }
+}
+
+.satellite-selected {
+  animation: satellite-pulse 2s infinite;
+}
+
+/* Custom scrollbar for panels */
+.keeptrack-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.keeptrack-panel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.keeptrack-panel::-webkit-scrollbar-thumb {
+  background: rgba(0, 209, 255, 0.5);
+  border-radius: 2px;
+}
+
+.keeptrack-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 209, 255, 0.7);
+}
+
+/* Loading animation */
+@keyframes keeptrack-loading {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.keeptrack-loading {
+  animation: keeptrack-loading 1s linear infinite;
+}
+
+/* Glassmorphism effects */
+.keeptrack-glass {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Typography */
+.keeptrack-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Button hover effects */
+.keeptrack-button:hover {
+  background: rgba(0, 209, 255, 0.1);
+  border-color: rgba(0, 209, 255, 0.3);
+  box-shadow: 0 0 10px rgba(0, 209, 255, 0.2);
+}
+
+/* Input focus effects */
+.keeptrack-input:focus {
+  border-color: rgba(0, 209, 255, 0.5);
+  box-shadow: 0 0 0 2px rgba(0, 209, 255, 0.2);
+}
+
+/* Panel slide animations */
+.keeptrack-panel-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.keeptrack-panel-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.keeptrack-panel-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.keeptrack-panel-exit-active {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
