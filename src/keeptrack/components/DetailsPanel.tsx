@@ -31,14 +31,12 @@ export const DetailsPanel: React.FC = () => {
     
     if (!result) return { satellite, result: null };
     
-    // Calculate orbital parameters
     const position = result.position;
     const velocity = result.velocity;
     const distance = Math.sqrt(position[0]**2 + position[1]**2 + position[2]**2);
     const speed = Math.sqrt(velocity[0]**2 + velocity[1]**2 + velocity[2]**2);
     const altitude = distance - 6371;
     
-    // Extract orbital elements from TLE
     const line2 = satellite.line2;
     const inclination = parseFloat(line2.substring(8, 16));
     const raan = parseFloat(line2.substring(17, 25));
@@ -47,7 +45,7 @@ export const DetailsPanel: React.FC = () => {
     const meanAnomaly = parseFloat(line2.substring(43, 51));
     const meanMotion = parseFloat(line2.substring(52, 63));
     
-    const period = (24 * 60) / meanMotion; // minutes
+    const period = (24 * 60) / meanMotion;
     
     return {
       satellite,

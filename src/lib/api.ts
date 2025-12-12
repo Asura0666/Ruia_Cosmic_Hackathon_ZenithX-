@@ -6,7 +6,6 @@ import {
   SpaceWeatherSchema, 
   SSISchema, 
   EconomicsSchema,
-  // LLMClimatePredictionSchema,
   Event,
   AirQuality,
   SpaceWeather,
@@ -30,7 +29,6 @@ export const queryClient = new QueryClient({
 
 class ApiClient {
   private async request<T>(endpoint: string, schema: z.ZodSchema<T>): Promise<T> {
-    // If no API base is configured, throw a descriptive error
     if (!API_BASE) {
       throw new Error('Backend API not configured. Please set VITE_API_BASE environment variable.');
     }
@@ -65,7 +63,6 @@ class ApiClient {
         z.array(EventSchema)
       );
     } catch (error) {
-      // Si el backend no está disponible, usar datos de fallback
       console.log('Backend no disponible para eventos, usando datos de fallback');
       return this.getFallbackEvents();
     }
@@ -83,7 +80,6 @@ class ApiClient {
         AirQualitySchema
       );
     } catch (error) {
-      // Si el backend no está disponible, usar datos de fallback
       console.log('Backend no disponible para calidad del aire, usando datos de fallback');
       return this.getFallbackAirQuality(city);
     }
@@ -93,7 +89,6 @@ class ApiClient {
     try {
       return await this.request('/api/v1/predict/space-weather', SpaceWeatherSchema);
     } catch (error) {
-      // Si el backend no está disponible, usar datos de fallback
       console.log('Backend no disponible para clima espacial, usando datos de fallback');
       return this.getFallbackSpaceWeather();
     }
@@ -104,7 +99,6 @@ class ApiClient {
     try {
       return await this.request(`/api/v1/ssi?${params}`, SSISchema);
     } catch (error) {
-      // Si el backend no está disponible, usar datos de fallback
       console.log('Backend no disponible para SSI, usando datos de fallback');
       return this.getFallbackSSI(city);
     }
@@ -117,7 +111,6 @@ class ApiClient {
     try {
       return await this.request(`/api/v1/economics?${params}`, EconomicsSchema);
     } catch (error) {
-      // Si el backend no está disponible, usar datos de fallback
       console.log('Backend no disponible para economía, usando datos de fallback');
       return this.getFallbackEconomics(city);
     }
@@ -142,7 +135,6 @@ class ApiClient {
     }
   }
 
-  // Métodos de fallback para cuando el backend no está disponible
   private getFallbackEvents(): Event[] {
     const now = new Date();
     return [

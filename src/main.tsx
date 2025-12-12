@@ -5,18 +5,16 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./styles/index.css";
 
-// Service Worker Registration
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("/service-worker.js")
       .then((registration) => {
         console.log(
-          "✅ Service Worker registered successfully:",
+          "Service Worker registered successfully:",
           registration.scope
         );
 
-        // Check for updates
         registration.addEventListener("updatefound", () => {
           const newWorker = registration.installing;
           if (newWorker) {
@@ -26,7 +24,7 @@ if ("serviceWorker" in navigator) {
                 navigator.serviceWorker.controller
               ) {
                 console.log(
-                  "🔄 New service worker available, will activate on next visit"
+                  "New service worker available, will activate on next visit"
                 );
               }
             });
@@ -34,7 +32,7 @@ if ("serviceWorker" in navigator) {
         });
       })
       .catch((error) => {
-        console.log("❌ Service Worker registration failed:", error);
+        console.log("Service Worker registration failed:", error);
       });
   });
 }

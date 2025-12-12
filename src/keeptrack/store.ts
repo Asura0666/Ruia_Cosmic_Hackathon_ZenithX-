@@ -3,7 +3,6 @@ import { persist } from 'zustand/middleware';
 import type { KeeptrackState, CameraState, TimelineState, FiltersState, Selection } from '@/types/keeptrack';
 
 interface KeeptrackStore extends KeeptrackState {
-  // Actions
   setCamera: (camera: Partial<CameraState>) => void;
   setTimeline: (timeline: Partial<TimelineState>) => void;
   setFrame: (frame: 'ECI' | 'ECF') => void;
@@ -15,7 +14,7 @@ interface KeeptrackStore extends KeeptrackState {
   resetFilters: () => void;
 }
 
-const defaultCamera: CameraState = { pitch: 39, yaw: 85, zoom: 4 }; // Face USA by default
+const defaultCamera: CameraState = { pitch: 39, yaw: 85, zoom: 4 };
 const defaultTimeline: TimelineState = {
   playing: false,
   speed: 1,
@@ -31,16 +30,14 @@ const defaultFilters: FiltersState = {
 export const useKeeptrackStore = create<KeeptrackStore>()(
   persist(
     (set) => ({
-      // Initial state
       camera: defaultCamera,
       timeline: defaultTimeline,
       frame: 'ECF',
-      colorMode: 'group', // This shows red debris and green starlink satellites
+      colorMode: 'group',
       filters: defaultFilters,
       selection: {},
       query: '',
 
-      // Actions
       setCamera: (camera) =>
         set((state) => ({ camera: { ...state.camera, ...camera } })),
       setTimeline: (timeline) =>

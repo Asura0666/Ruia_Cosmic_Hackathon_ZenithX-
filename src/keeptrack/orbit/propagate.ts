@@ -50,7 +50,6 @@ export const positionForFrame = (
   };
 };
 
-// Generate orbit points (one complete orbit)
 export const generateOrbitPoints = (
   tle: TLERecord,
   startDate: Date,
@@ -59,10 +58,9 @@ export const generateOrbitPoints = (
 ): OrbitPosition[] => {
   const points: OrbitPosition[] = [];
   
-  // Calculate orbital period from TLE
   const line2 = tle.line2;
-  const meanMotion = parseFloat(line2.substring(52, 63)); // revolutions per day
-  const periodMinutes = (24 * 60) / meanMotion; // period in minutes
+  const meanMotion = parseFloat(line2.substring(52, 63)); 
+  const periodMinutes = (24 * 60) / meanMotion; 
   const periodMs = periodMinutes * 60 * 1000;
   
   for (let i = 0; i <= samples; i++) {
@@ -78,7 +76,6 @@ export const generateOrbitPoints = (
   return points;
 };
 
-// Generate trail points (historical positions)
 export const generateTrailPoints = (
   tle: TLERecord,
   currentDate: Date,

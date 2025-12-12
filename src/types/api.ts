@@ -1,6 +1,5 @@
 import { z } from 'zod';
 
-// Base schemas
 export const EventSchema = z.object({
   id: z.string(),
   title: z.string(),
@@ -99,7 +98,6 @@ export const LLMClimatePredictionSchema = z.object({
   generated_at: z.string(),
 });
 
-// Types
 export type Event = z.infer<typeof EventSchema>;
 export type AirQuality = z.infer<typeof AirQualitySchema>;
 export type SpaceWeather = z.infer<typeof SpaceWeatherSchema>;

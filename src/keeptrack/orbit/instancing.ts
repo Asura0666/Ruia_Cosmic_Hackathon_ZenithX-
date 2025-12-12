@@ -23,7 +23,6 @@ export class SatelliteInstanceManager {
     this.instancedMesh = new THREE.InstancedMesh(geometry, material, maxCount);
     this.colorArray = new Float32Array(maxCount * 3);
     
-    // Initialize color attribute
     const colorAttribute = new THREE.InstancedBufferAttribute(this.colorArray, 3);
     this.instancedMesh.instanceColor = colorAttribute;
   }
@@ -51,12 +50,10 @@ export class SatelliteInstanceManager {
         id: satellite.id
       });
 
-      // Update transform matrix
       this.dummy.position.set(position.x, position.y, position.z);
       this.dummy.updateMatrix();
       this.instancedMesh.setMatrixAt(index, this.dummy.matrix);
 
-      // Update color
       const colorIndex = index * 3;
       const c = new THREE.Color(color);
       this.colorArray[colorIndex] = c.r;
@@ -66,10 +63,8 @@ export class SatelliteInstanceManager {
       index++;
     }
 
-    // Set actual count
     this.instancedMesh.count = index;
     
-    // Mark for update
     this.instancedMesh.instanceMatrix.needsUpdate = true;
     if (this.instancedMesh.instanceColor) {
       this.instancedMesh.instanceColor.needsUpdate = true;
@@ -97,7 +92,6 @@ export class SatelliteInstanceManager {
   }
 }
 
-// Throttled update helper
 export const createThrottledUpdater = (callback: () => void, delay: number = 250) => {
   let timeout: NodeJS.Timeout | null = null;
   let lastUpdate = 0;

@@ -2,83 +2,81 @@ import type { TLERecord, OrbitPosition } from '../../types/keeptrack';
 
 export const COLOR_PALETTES = {
   group: {
-    starlink: '#00ff41',        // Verde brillante - Starlink
-    debris: '#ff1744',          // Rojo brillante - Escombros
-    navigation: '#00d4ff',      // Azul cian - GPS, GLONASS, Galileo
-    communication: '#ff6d00',   // Naranja - Satélites de comunicación
-    earth_observation: '#e91e63', // Rosa - Observación terrestre
-    scientific: '#ffeb3b',      // Amarillo - Misiones científicas
-    military: '#9c27b0',        // Púrpura - Satélites militares
-    weather: '#2196f3',         // Azul - Satélites meteorológicos
-    amateur: '#ff9800',         // Naranja claro - Radio amateur
-    space_station: '#00e676',   // Verde claro - Estaciones espaciales
-    other: '#ffffff',           // Blanco - Otros
+    starlink: '#00ff41',        
+    debris: '#ff1744',          
+    navigation: '#00d4ff',      
+    communication: '#ff6d00',   
+    earth_observation: '#e91e63',
+    scientific: '#ffeb3b',      
+    military: '#9c27b0',        
+    weather: '#2196f3',         
+    amateur: '#ff9800',         
+    space_station: '#00e676',   
+    other: '#ffffff',           
   },
   altitude: {
-    very_low: '#ff1744',    // < 300km - Rojo brillante
-    low: '#ff6d00',         // 300-600km - Naranja
-    medium_low: '#ffeb3b',  // 600-900km - Amarillo
-    medium: '#00ff41',      // 900-1200km - Verde
-    medium_high: '#00d4ff', // 1200-1500km - Azul cian
-    high: '#e91e63',        // 1500-2000km - Rosa
-    very_high: '#9c27b0',   // 2000-5000km - Púrpura
-    extreme: '#ffffff',     // > 5000km - Blanco
+    very_low: '#ff1744',    
+    low: '#ff6d00',         
+    medium_low: '#ffeb3b',  
+    medium: '#00ff41',      
+    medium_high: '#00d4ff', 
+    high: '#e91e63',        
+    very_high: '#9c27b0',   
+    extreme: '#ffffff',     
   },
   velocity: {
-    very_slow: '#ffffff',   // < 6.0 km/s - Blanco (órbitas muy altas)
-    slow: '#9c27b0',        // 6.0-7.0 km/s - Púrpura
-    medium_slow: '#e91e63', // 7.0-7.3 km/s - Rosa
-    medium: '#00d4ff',      // 7.3-7.6 km/s - Azul cian
-    medium_fast: '#00ff41', // 7.6-7.9 km/s - Verde
-    fast: '#ffeb3b',        // 7.9-8.2 km/s - Amarillo
-    very_fast: '#ff6d00',   // 8.2-8.5 km/s - Naranja
-    extreme: '#ff1744',     // > 8.5 km/s - Rojo
+    very_slow: '#ffffff',   
+    slow: '#9c27b0',        
+    medium_slow: '#e91e63', 
+    medium: '#00d4ff',      
+    medium_fast: '#00ff41', 
+    fast: '#ffeb3b',        
+    very_fast: '#ff6d00',   
+    extreme: '#ff1744',     
   },
   operator: {
-    SpaceX: '#00ff00',   // Verde para SpaceX
-    NASA: '#ff6b6b',     // Rojo claro para NASA
-    ROSCOSMOS: '#ff8cc8', // Rosa para ROSCOSMOS
-    ESA: '#51cf66',      // Verde azulado para ESA
-    JAXA: '#ffd43b',     // Amarillo para JAXA
-    CNSA: '#ff4757',     // Rojo para China
-    ISRO: '#ff9f43',     // Naranja para India
-    'US SPACE FORCE': '#5352ed', // Azul para US Space Force
-    'US NAVY': '#3742fa',        // Azul marino para US Navy
-    'US AIR FORCE': '#70a1ff',   // Azul claro para US Air Force
+    SpaceX: '#00ff00',   
+    NASA: '#ff6b6b',     
+    ROSCOSMOS: '#ff8cc8', 
+    ESA: '#51cf66',      
+    JAXA: '#ffd43b',     
+    CNSA: '#ff4757',     
+    ISRO: '#ff9f43',     
+    'US SPACE FORCE': '#5352ed', 
+    'US NAVY': '#3742fa',        
+    'US AIR FORCE': '#70a1ff',   
     default: '#ffffff',
   },
   mission: {
-    GPS: '#00d4ff',           // Azul cian - Navegación GPS
-    GLONASS: '#ff6b00',       // Naranja - Navegación GLONASS
-    GALILEO: '#9c27b0',       // Púrpura - Navegación Galileo
-    BEIDOU: '#ffeb3b',        // Amarillo - Navegación BeiDou
-    LANDSAT: '#4caf50',       // Verde - Observación terrestre
-    SENTINEL: '#2196f3',      // Azul - Observación terrestre ESA
-    GOES: '#ff9800',          // Naranja - Meteorología
-    NOAA: '#795548',          // Marrón - Meteorología NOAA
-    IRIDIUM: '#e91e63',       // Rosa - Comunicación Iridium
-    GLOBALSTAR: '#9e9e9e',    // Gris - Comunicación Globalstar
-    INTELSAT: '#607d8b',      // Gris azulado - Comunicación
-    HUBBLE: '#ffc107',        // Dorado - Telescopio espacial
-    CHANDRA: '#673ab7',       // Púrpura oscuro - Observatorio de rayos X
-    SPITZER: '#ff5722',       // Rojo naranja - Telescopio infrarrojo
+    GPS: '#00d4ff',           
+    GLONASS: '#ff6b00',       
+    GALILEO: '#9c27b0',       
+    BEIDOU: '#ffeb3b',        
+    LANDSAT: '#4caf50',       
+    SENTINEL: '#2196f3',      
+    GOES: '#ff9800',              NOAA: '#795548',          
+    IRIDIUM: '#e91e63',       
+    GLOBALSTAR: '#9e9e9e',        INTELSAT: '#607d8b',      
+    HUBBLE: '#ffc107',        
+    CHANDRA: '#673ab7',       
+    SPITZER: '#ff5722',       
     default: '#ffffff',
   },
   country: {
-    'United States': '#ff4757',    // Rojo - Estados Unidos
-    'Russia': '#ff6b00',           // Naranja - Rusia
-    'China': '#ffeb3b',            // Amarillo - China
-    'European Union': '#2196f3',   // Azul - Unión Europea
-    'Japan': '#e91e63',            // Rosa - Japón
-    'India': '#ff9800',            // Naranja - India
-    'Canada': '#f44336',           // Rojo - Canadá
-    'United Kingdom': '#9c27b0',   // Púrpura - Reino Unido
-    'France': '#3f51b5',           // Azul índigo - Francia
-    'Germany': '#009688',          // Verde azulado - Alemania
-    'Italy': '#4caf50',            // Verde - Italia
-    'Israel': '#00bcd4',           // Cian - Israel
-    'South Korea': '#795548',      // Marrón - Corea del Sur
-    'Australia': '#607d8b',        // Gris azulado - Australia
+    'United States': '#ff4757',    
+    'Russia': '#ff6b00',           
+    'China': '#ffeb3b',            
+    'European Union': '#2196f3',   
+    'Japan': '#e91e63',            
+    'India': '#ff9800',            
+    'Canada': '#f44336',           
+    'United Kingdom': '#9c27b0',   
+    'France': '#3f51b5',           
+    'Germany': '#009688',          
+    'Italy': '#4caf50',            
+    'Israel': '#00bcd4',           
+    'South Korea': '#795548',      
+    'Australia': '#607d8b',        
     default: '#ffffff',
   },
 };
@@ -141,9 +139,8 @@ export const getColorForSatellite = (
 };
 
 const getAltitudeFromPosition = (position: OrbitPosition): number => {
-  // Position is normalized (Earth radius = 1.0), so calculate altitude
   const distance = Math.sqrt(position.x ** 2 + position.y ** 2 + position.z ** 2);
-  return (distance - 1.0) * 6371; // Convert back to km
+  return (distance - 1.0) * 6371;
 };
 
 export const getLegendForColorMode = (colorMode: string) => {

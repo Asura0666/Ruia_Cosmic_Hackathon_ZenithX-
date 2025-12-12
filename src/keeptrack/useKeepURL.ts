@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useKeeptrackStore } from './store';
 
-// Simple debounce utility function
 const debounce = (func: Function, wait: number) => {
   let timeout: NodeJS.Timeout;
   return (...args: any[]) => {
@@ -30,7 +29,6 @@ export const useKeepURL = () => {
 
   const isInitialized = useRef(false);
 
-  // Read from URL on mount
   useEffect(() => {
     if (isInitialized.current) return;
     isInitialized.current = true;
@@ -57,7 +55,6 @@ export const useKeepURL = () => {
     if (q) setQuery(q);
   }, []);
 
-  // Write to URL when state changes (debounced)
   const updateURL = useRef(
     debounce(() => {
       const params = new URLSearchParams();

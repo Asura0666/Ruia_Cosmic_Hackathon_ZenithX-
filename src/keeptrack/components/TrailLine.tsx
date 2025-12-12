@@ -17,7 +17,6 @@ export const TrailLine: React.FC = () => {
     const currentDate = new Date(timeline.dateISO);
     const points = generateTrailPoints(satellite, currentDate, frame, 60, 30);
     
-    // Prevent Line component error with empty points array
     if (!points || points.length === 0) return null;
     
     return points.map(p => [p.x, p.y, p.z] as [number, number, number]);

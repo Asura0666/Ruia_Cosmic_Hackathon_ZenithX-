@@ -14,13 +14,10 @@ export const Keeptrack: React.FC = () => {
   const { selection, setColorMode, setFilters, setSelection } =
     useKeeptrackStore();
 
-  // Initialize URL sync
   useKeepURL();
 
-  // Keyboard shortcuts
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
-      // Ignore if typing in input fields
       if (event.target instanceof HTMLInputElement) return;
 
       switch (event.code) {
@@ -48,7 +45,6 @@ export const Keeptrack: React.FC = () => {
 
         case "KeyG":
           event.preventDefault();
-          // Frame toggle removed - always use ECF
           break;
 
         case "KeyC":
@@ -88,7 +84,6 @@ export const Keeptrack: React.FC = () => {
         case "KeyH":
         case "Slash":
           if (event.shiftKey && event.code === "Slash") {
-            // Question mark
             event.preventDefault();
             setShowHelp(!showHelp);
           } else if (event.code === "KeyH") {

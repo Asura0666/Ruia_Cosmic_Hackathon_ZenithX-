@@ -16,7 +16,6 @@ export const SatelliteDots: React.FC = () => {
   const tempColor = useMemo(() => new THREE.Color(), []);
   const timeRef = useRef(0);
   
-  // Filter records based on current filters
   const filteredRecords = useMemo(() => {
     let filtered = records;
     
@@ -31,21 +30,18 @@ export const SatelliteDots: React.FC = () => {
       );
     }
     
-    // Limit satellites for better performance
     return filtered.slice(0, 15000);
   }, [records, filters]);
 
-  // Create optimized instanced mesh
   const instancedMesh = useMemo(() => {
-    const geometry = new THREE.SphereGeometry(0.006, 6, 6); // Optimized geometry
+    const geometry = new THREE.SphereGeometry(0.006, 6, 6);
     const material = new THREE.MeshLambertMaterial({ 
       transparent: true,
       opacity: 0.8,
     });
     
-    const mesh = new THREE.InstancedMesh(geometry, material, 15000); // Optimized count
+    const mesh = new THREE.InstancedMesh(geometry, material, 15000); 
     
-    // Create color attribute for instanced rendering
     const colors = new Float32Array(15000 * 3);
     for (let i = 0; i < 15000; i++) {
       colors[i * 3] = 1.0;     // R
@@ -59,38 +55,32 @@ export const SatelliteDots: React.FC = () => {
     return mesh;
   }, []);
 
-  // Update satellite positions and colors
   useEffect(() => {
     if (!meshRef.current) return;
     
     const currentDate = new Date(timeline.dateISO);
     let count = 0;
     
-    // Process satellites with performance optimization
     for (const satellite of filteredRecords) {
-      if (count >= 15000) break; // Limit for performance
+      if (count >= 15000) break; 
       
       const position = positionForFrame(satellite, currentDate, frame);
       if (!position) continue;
       
-      // Apply altitude filter
       const distance = Math.sqrt(position.x ** 2 + position.y ** 2 + position.z ** 2);
-      const altitude = (distance - 1.0) * 6371; // Convert to km
+      const altitude = (distance - 1.0) * 6371; 
       
       if (altitude < filters.altMin || altitude > filters.altMax) continue;
       
-      // Simple floating animation based on satellite index and time
       const time = timeRef.current;
       const satelliteIndex = parseInt(satellite.id) || count;
       
-      // Optimized floating animation
       const floatSpeed = satellite.group === 'starlink' ? 1.5 : 
                         satellite.group === 'debris' ? 0.8 : 1.0;
       const floatAmplitude = 0.003;
       const orbitSpeed = satellite.group === 'starlink' ? 0.5 : 
                         satellite.group === 'debris' ? 0.2 : 0.3;
       
-      // Calculate animated position with simple math
       const floatY = Math.sin(time * floatSpeed + satelliteIndex) * floatAmplitude;
       const orbitX = Math.cos(time * orbitSpeed + satelliteIndex) * 0.008;
       const orbitZ = Math.sin(time * orbitSpeed + satelliteIndex) * 0.008;
@@ -103,7 +93,6 @@ export const SatelliteDots: React.FC = () => {
       tempObject.updateMatrix();
       meshRef.current.setMatrixAt(count, tempObject.matrix);
       
-      // Set color
       const color = getColorForSatellite(satellite, position, colorMode);
       tempColor.set(color);
       meshRef.current.setColorAt(count, tempColor);
@@ -118,13 +107,11 @@ export const SatelliteDots: React.FC = () => {
     }
   }, [filteredRecords, timeline.dateISO, frame, colorMode, filters]);
 
-  // Optimized continuous animation
   useFrame((state) => {
     timeRef.current = state.clock.elapsedTime;
   }
   )
 
-  // Handle clicking on satellites
   const handleClick = (event: any) => {
     event.stopPropagation();
     

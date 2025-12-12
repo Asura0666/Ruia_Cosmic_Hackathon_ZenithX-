@@ -4,14 +4,12 @@ export const parseTLEData = (data: string): TLERecord[] => {
   const lines = data.trim().split('\n');
   const records: TLERecord[] = [];
 
-  // Generate diverse test satellites with realistic classifications
   for (let i = 1; i <= 5000; i++) {
-    const inclination = 20 + Math.random() * 80; // 20-100 degrees
+    const inclination = 20 + Math.random() * 80; 
     const raan = Math.random() * 360;
     const meanAnomaly = Math.random() * 360;
-    const meanMotion = 14 + Math.random() * 4; // ~400-800km altitude
+    const meanMotion = 14 + Math.random() * 4; 
     
-    // Classify satellites based on realistic distributions
     let group: TLERecord['group'] = 'other';
     let operator = undefined;
     let mission = undefined;
@@ -19,42 +17,36 @@ export const parseTLEData = (data: string): TLERecord[] => {
     let name = '';
     
     if (i <= 2000) {
-      // Starlink constellation
       group = 'starlink';
       operator = 'SpaceX';
       mission = 'STARLINK';
       country = 'United States';
       name = `STARLINK-${i}`;
     } else if (i <= 2500) {
-      // GPS constellation
       group = 'navigation';
       operator = 'US SPACE FORCE';
       mission = 'GPS';
       country = 'United States';
       name = `GPS BIIR-${i - 2000}`;
     } else if (i <= 3000) {
-      // GLONASS constellation
       group = 'navigation';
       operator = 'ROSCOSMOS';
       mission = 'GLONASS';
       country = 'Russia';
       name = `GLONASS-${i - 2500}`;
     } else if (i <= 3500) {
-      // Galileo constellation
       group = 'navigation';
       operator = 'ESA';
       mission = 'GALILEO';
       country = 'European Union';
       name = `GALILEO-${i - 3000}`;
     } else if (i <= 4000) {
-      // BeiDou constellation
       group = 'navigation';
       operator = 'CNSA';
       mission = 'BEIDOU';
       country = 'China';
       name = `BEIDOU-${i - 3500}`;
     } else if (i <= 4200) {
-      // Communication satellites
       group = 'communication';
       const commOperators = ['INTELSAT', 'SES', 'EUTELSAT', 'TELESAT'];
       operator = commOperators[Math.floor(Math.random() * commOperators.length)];
@@ -64,7 +56,6 @@ export const parseTLEData = (data: string): TLERecord[] => {
                 operator === 'EUTELSAT' ? 'France' : 'Canada';
       name = `${operator}-${i - 4000}`;
     } else if (i <= 4300) {
-      // Earth observation satellites
       group = 'earth_observation';
       const eoMissions = ['LANDSAT', 'SENTINEL', 'WORLDVIEW', 'SPOT'];
       mission = eoMissions[Math.floor(Math.random() * eoMissions.length)];

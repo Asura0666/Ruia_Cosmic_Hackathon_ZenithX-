@@ -12,12 +12,8 @@ const AppContent: React.FC = () => {
         {/* Routes */}
         <main className="flex-1 pt-20">
           <Routes>
-            {/* <Route path="/" element={<Dashboard />} />
-            <Route path="/data" element={<Data />} /> */}
             <Route path="/" element={<Home />} />
             <Route path="/satellites" element={<Keeptrack />} />
-            {/* <Route path="/about" element={<About />} />
-            <Route path="/api-status" element={<ApiStatus />} /> */}
           </Routes>
         </main>
       </div>

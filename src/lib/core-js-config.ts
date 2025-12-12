@@ -1,13 +1,11 @@
 
 import 'core-js/stable';
 
-// Additional modern features that might not be in stable yet
 import 'core-js/proposals/array-grouping';
 import 'core-js/proposals/change-array-by-copy';
 import 'core-js/proposals/iterator-helpers';
 import 'core-js/proposals/set-methods';
 
-// Performance monitoring for polyfill usage
 export const logPolyfillUsage = () => {
   const features = {
     'Array.prototype.flat': !!Array.prototype.flat,
@@ -33,10 +31,8 @@ export const logPolyfillUsage = () => {
   return features;
 };
 
-// Check if we're running in a modern environment
 export const isModernEnvironment = (): boolean => {
   try {
-    // Test for key modern features
     return !!(
       Array.prototype.flat &&
       Promise.allSettled &&
@@ -49,7 +45,6 @@ export const isModernEnvironment = (): boolean => {
   }
 };
 
-// Initialize polyfill logging in development
 if (import.meta.env.DEV) {
   logPolyfillUsage();
   

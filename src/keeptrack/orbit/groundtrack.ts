@@ -23,11 +23,9 @@ export const generateGroundTrack = (
     
     if (!result) continue;
     
-    // Convert ECI to ECEF for ground track
     const ecfPosition = eciToEcf(result.position, date);
     const lla = ecfToLLA(ecfPosition);
     
-    // Project onto Earth surface for 3D visualization
     const earthSurfaceKm: [number, number, number] = [
       6371 * Math.cos(lla.lat * Math.PI / 180) * Math.cos(lla.lon * Math.PI / 180),
       6371 * Math.cos(lla.lat * Math.PI / 180) * Math.sin(lla.lon * Math.PI / 180),
@@ -50,7 +48,6 @@ export const generateGroundTrack = (
   return points;
 };
 
-// Handle longitude wrapping for continuous lines
 export const processGroundTrackForRendering = (points: GroundTrackPoint[]): GroundTrackPoint[][] => {
   const segments: GroundTrackPoint[][] = [];
   let currentSegment: GroundTrackPoint[] = [];
@@ -60,7 +57,6 @@ export const processGroundTrackForRendering = (points: GroundTrackPoint[]): Grou
     const prevPoint = points[i - 1];
     
     if (prevPoint && Math.abs(point.lon - prevPoint.lon) > 180) {
-      // Longitude wrap detected, start new segment
       if (currentSegment.length > 0) {
         segments.push(currentSegment);
         currentSegment = [];

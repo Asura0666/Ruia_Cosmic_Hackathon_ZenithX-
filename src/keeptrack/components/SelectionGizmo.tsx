@@ -19,9 +19,8 @@ export const SelectionGizmo: React.FC = () => {
     
     if (!position) return null;
     
-    // Calculate altitude
     const distance = Math.sqrt(position.x ** 2 + position.y ** 2 + position.z ** 2);
-    const altitude = Math.round((distance - 1.0) * 6371); // km
+    const altitude = Math.round((distance - 1.0) * 6371);
     
     return {
       position: [position.x, position.y, position.z] as [number, number, number],
@@ -34,19 +33,16 @@ export const SelectionGizmo: React.FC = () => {
 
   return (
     <group position={selectionData.position}>
-      {/* Selection ring */}
       <mesh>
         <ringGeometry args={[0.008, 0.012, 16]} />
         <meshBasicMaterial color="#00D1FF" transparent opacity={0.8} />
       </mesh>
       
-      {/* Pulsing glow */}
       <mesh>
         <ringGeometry args={[0.006, 0.015, 16]} />
         <meshBasicMaterial color="#00D1FF" transparent opacity={0.3} />
       </mesh>
       
-      {/* Label */}
       <Billboard follow={true} lockX={false} lockY={false} lockZ={false}>
         <Text
           position={[0, 0.04, 0]}

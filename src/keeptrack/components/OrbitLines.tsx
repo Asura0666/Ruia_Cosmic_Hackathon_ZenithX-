@@ -17,7 +17,6 @@ export const OrbitLines: React.FC = () => {
     const currentDate = new Date(timeline.dateISO);
     const points = generateOrbitPoints(satellite, currentDate, frame, 120);
     
-    // Prevent Line component error with empty points array
     if (!points || points.length === 0) return null;
     
     return {
