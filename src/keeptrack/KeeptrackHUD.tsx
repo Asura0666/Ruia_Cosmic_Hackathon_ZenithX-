@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Button } from '../components/ui/button';
 import { BadgeHelp as Help, Palette, Settings, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
 import { SearchBar } from './components/SearchBar';
 import { FiltersPanel } from './components/FiltersPanel';
 import { KeeptrackLegend } from './KeeptrackLegend';
-import { TimeControls3D } from './components/TimeControls3D';
 import { useKeeptrackStore } from './store';
 import classnames from 'classnames';
 

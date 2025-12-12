@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { positionForFrame } from './propagate';
 import { getColorForSatellite } from './colors';
-import type { TLERecord } from '@/types/keeptrack';
+import type { TLERecord } from '../../types/keeptrack';
 
 export interface SatelliteInstance {
   position: THREE.Vector3;

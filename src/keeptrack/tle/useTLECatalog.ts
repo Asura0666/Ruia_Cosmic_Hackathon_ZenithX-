@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { fetchTLEData } from './sources';
 import { parseTLEData, searchSatellites, filterSatellites } from './parsers';
 import { useKeeptrackStore } from '../store';
-import type { TLERecord } from '@/types/keeptrack';
+import type { TLERecord } from '../../types/keeptrack';
 
 export const useTLECatalog = () => {
   const { filters, query, timeline } = useKeeptrackStore();

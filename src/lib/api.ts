@@ -6,15 +6,13 @@ import {
   SpaceWeatherSchema, 
   SSISchema, 
   EconomicsSchema,
-  LLMClimatePredictionSchema,
+  // LLMClimatePredictionSchema,
   Event,
   AirQuality,
   SpaceWeather,
   SSI,
   Economics,
-  LLMClimatePrediction
 } from '../types/api';
-import { getRegionalFallbackPredictions } from './llm-fallback';
 
 const API_BASE = import.meta.env.VITE_API_BASE || '';
 
@@ -122,22 +120,6 @@ class ApiClient {
       // Si el backend no está disponible, usar datos de fallback
       console.log('Backend no disponible para economía, usando datos de fallback');
       return this.getFallbackEconomics(city);
-    }
-  }
-
-  async getLLMClimatePredictions(city: string, region?: string): Promise<LLMClimatePrediction[]> {
-    const params = new URLSearchParams({ city });
-    if (region) params.set('region', region);
-    
-    try {
-      return await this.request(
-        `/api/v1/predict/llm-climate?${params}`,
-        z.array(LLMClimatePredictionSchema)
-      );
-    } catch (error) {
-      // Si el backend no está disponible, usar datos de fallback
-      console.log('Backend no disponible para predicciones LLM, usando datos de fallback');
-      return getRegionalFallbackPredictions(city, city, region || 'Caribbean');
     }
   }
 

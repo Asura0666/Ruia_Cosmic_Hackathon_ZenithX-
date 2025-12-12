@@ -1,6 +1,6 @@
 import { propagateAt, positionForFrame } from './propagate';
 import { eciToEcf, ecfToLLA, normalizePosition } from './frames';
-import type { TLERecord, OrbitPosition } from '@/types/keeptrack';
+import type { TLERecord, OrbitPosition } from '../../types/keeptrack';
 
 export interface GroundTrackPoint {
   lat: number;

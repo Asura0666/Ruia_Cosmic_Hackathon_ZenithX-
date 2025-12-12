@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Input } from '@/components/ui/input';
+import { Input } from '../../components/ui/input';
 import { Search, X } from 'lucide-react';
 import { useKeeptrackStore } from '../store';
 import { useTLECatalog } from '../tle/useTLECatalog';

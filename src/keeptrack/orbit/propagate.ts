@@ -1,6 +1,6 @@
 import * as satellite from 'satellite.js';
 import { eciToEcf, ecfToEci, normalizePosition } from './frames';
-import type { TLERecord, OrbitPosition } from '@/types/keeptrack';
+import type { TLERecord, OrbitPosition } from '../../types/keeptrack';
 
 export const propagateAt = (
   tle: TLERecord,
